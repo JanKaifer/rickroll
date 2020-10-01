@@ -45,7 +45,7 @@ export default function App() {
       videoRef.current = target;
       setVideoLoaded(true);
 
-      play();
+      setInterval(play, 100);
     },
     [videoRef]
   );
@@ -93,7 +93,7 @@ export default function App() {
       <div
         className="CookieOverlay"
         style={{ opacity: playing ? 0 : 1 }}
-        onClick={play}
+        onClick={() => setInterval(play, 100)}
       >
         {videoLoaded ? <CookieConsent /> : <Loader />}
       </div>

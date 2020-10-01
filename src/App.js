@@ -66,6 +66,12 @@ export default function App() {
     setPlaying(true);
   };
 
+  useEffect(() => {
+    if (playing) {
+      window.document.title = window.document.title.replace("roll", "rickroll");
+    }
+  }, [playing]);
+
   return (
     <div className="App" ref={containerRef}>
       <div style={{ opacity: playing ? 1 : 0 }}>

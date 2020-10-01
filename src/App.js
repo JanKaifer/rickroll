@@ -39,7 +39,7 @@ export default function App() {
           ref={videoRef}
           src="/assets/RickRoll.mp4"
           onPlay={onPlay}
-          autoPlay={false}
+          autoPlay
         />
       </div>
       <CookieConsent show={!playing} onClick={play} />

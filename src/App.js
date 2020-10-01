@@ -44,27 +44,33 @@ export default function App() {
     ({ target }) => {
       videoRef.current = target;
       setVideoLoaded(true);
+
+      play();
     },
     [videoRef]
   );
 
-  const play = () => {
-    const video = videoRef.current;
-
+  const unmute = () => {
     try {
-      video.unMute();
-      video.setVolume(100);
+      videoRef.current.unMute();
+      videoRef.current.setVolume(100);
     } catch {
       console.error("Unable to unmute.");
     }
+  };
+
+  const play = () => {
     try {
-      video.playVideo();
+      videoRef.current.playVideo();
     } catch {
       console.error("Unable to play video.");
     }
-
-    setPlaying(true);
   };
+
+  const onPlay = useCallback(() => {
+    unmute();
+    setPlaying(true);
+  }, []);
 
   useEffect(() => {
     if (playing) {
@@ -80,6 +86,7 @@ export default function App() {
             videoId="dQw4w9WgXcQ"
             opts={opts}
             onReady={onReady}
+            onPlay={onPlay}
           />
         )}
       </div>
